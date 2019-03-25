@@ -14,7 +14,7 @@ Separation = enum.Enum("Separation", "TRAIN TEST")
 
 def fashion_mnist_dataloader(separation_group: Separation) -> data.DataLoader:
     dataset = datasets.FashionMNIST(
-        "~/Data/FashionMNIST/",
+        "~/Data/",
         train=separation_group==Separation.TRAIN,
         transform=transforms.ToTensor(),
     )
