@@ -1,11 +1,11 @@
 import torch
 import main
 
-def eval():
+def eval(separation):
     model = main.SomethingSimple()
     model.load_state_dict(torch.load("model.params"))
 
-    data_loader = main.fashion_mnist_dataloader(main.Separation.TEST)
+    data_loader = main.fashion_mnist_dataloader(separation)
 
     total, corrects = 0., 0.
     for images, targets in data_loader:
@@ -15,7 +15,8 @@ def eval():
         total += float(len(targets))
         corrects += float(correct_predictions)
 
-    print(f"Accuracy: {corrects/total}")
+    print(f"Accuracy: {corrects/total}, on {separation}")
 
 if __name__=="__main__":
-    eval()
+    eval(main.Separation.TRAIN)
+    eval(main.Separation.TEST)
